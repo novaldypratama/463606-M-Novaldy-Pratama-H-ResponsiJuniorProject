@@ -2,5 +2,5 @@
 
 Responsi Junior Project 2
 
-Nama : Mochammad Novaldy Pratama Hakim
-NIM  : 20/463606/TK/51598
+## Nama : Mochammad Novaldy Pratama Hakim
+## NIM  : 20/463606/TK/51598
