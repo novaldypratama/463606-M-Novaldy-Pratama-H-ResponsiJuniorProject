@@ -12,10 +12,11 @@ namespace Responsi_Novaldy
         private NpgsqlConnection conn;
         private string? sql = null;
         private DataGridViewRow r;
+        string connstring = "Host=LocalHost;Port=2022;Username=novaldy;Password=informatika;Database=responsi";
+
         public Form1()
         {
             InitializeComponent();
-            conn = new NpgsqlConnection();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -24,29 +25,47 @@ namespace Responsi_Novaldy
             {
                 conn.Open();
                 dgvData.DataSource = null;
-                sql = "select * from ";
+                sql = @"select * from departemen(:id_dep,:nama_dep)";
                 cmd = new NpgsqlCommand();
+                dt = new DataTable();
+                NpgsqlDataReader rd = cmd.ExecuteReader();
+                dt.Load(rd);
+                dgvData.DataSource = dt;
+
+                conn.Close();
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                conn.Close();
+                MessageBox.Show("Error: " + ex.Message, "Gagal!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            conn = new NpgsqlConnection(connstring);
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
+            conn.Open();
+            sql = @"select * from insert_data(:_nama,:_idDep)";
+            cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("nama", tbNama.Text);
+            cmd.Parameters.AddWithValue("id_dep", tbDep.Text);
+            if((int)cmd.ExecuteScalar() == 1)
+            {
+                try
+                {
+                    MessageBox.Show("Data User Berhasil Diinputkan", "Well Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    conn.Close();
+                    btnLoad.PerformClick();
+                    tbNama.Text = tbDep.Text = null;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Error:" + ex.Message, "Gagal!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

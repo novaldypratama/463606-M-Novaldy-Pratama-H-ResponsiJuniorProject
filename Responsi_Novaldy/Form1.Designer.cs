@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNama = new System.Windows.Forms.TextBox();
             this.tbDep = new System.Windows.Forms.TextBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
@@ -82,12 +82,12 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Dep. Karyawan :";
             // 
-            // textBox1
+            // tbNama
             // 
-            this.textBox1.Location = new System.Drawing.Point(173, 109);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 23);
-            this.textBox1.TabIndex = 4;
+            this.tbNama.Location = new System.Drawing.Point(173, 109);
+            this.tbNama.Name = "tbNama";
+            this.tbNama.Size = new System.Drawing.Size(203, 23);
+            this.tbNama.TabIndex = 4;
             // 
             // tbDep
             // 
@@ -128,7 +128,6 @@
             this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -139,7 +138,6 @@
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // dgvData
             // 
@@ -170,13 +168,14 @@
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.tbDep);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbNama);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
@@ -190,7 +189,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox tbNama;
         private TextBox tbDep;
         private Button btnLoad;
         private Button btnInsert;
